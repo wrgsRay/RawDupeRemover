@@ -4,6 +4,8 @@ Python 3.6+
 """
 import os
 import shutil
+import tkinter as tk
+from tkinter import filedialog
 
 
 def create_delete_folder(folder):
@@ -15,9 +17,10 @@ def create_delete_folder(folder):
 
 
 def main():
-    # TODO: Ask user for path
-    path_base = '.\\test'  # Set Path
-    path_target = '.\\delete'  # Set target path
+    root = tk.Tk()
+    root.withdraw()
+    path_base = filedialog.askdirectory()  # Ask user for folder
+    path_target = os.path.join(path_base, 'delete')  # Set target path
     create_delete_folder(path_target)  # create delete folder
     # os.chdir(path_base)  # Change working folder to path
     raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
@@ -28,7 +31,7 @@ def main():
     # Get all raw files into a list
     raws = list()  # create empty list
     for extension in raw_formats:  # Loop through all supported extensions
-        raws += ([raw.upper() for raw in files if raw.endswith(extension)])  # If support raws and found, add to list
+        raws += ([raw.upper() for raw in files if raw.endswith(extension)])  # If supported raws and found, add to list
 
     # Get all jpg files into a list without extension
     jpgs = [jpg[0:-4].upper() for jpg in files if jpg.endswith('.JPG')]
