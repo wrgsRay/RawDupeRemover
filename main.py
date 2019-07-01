@@ -11,7 +11,7 @@ from tkinter import filedialog
 raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
 
 
-def create_delete_folder(folder):
+def create_folder(folder):
     try:
         os.makedirs(folder)
         print(f'Folder "{folder}" is created')
@@ -31,8 +31,8 @@ def main():
         quit()
     extra_raws_path = os.path.join(path_base, 'extra_raws')  # Set path for extra raw files
     extra_jpgs_path = os.path.join(path_base, 'extra_jpgs')  # Set path for extra jpg files
-    create_delete_folder(extra_raws_path)  # create delete folder
-    create_delete_folder(extra_jpgs_path)  # create delete folder
+    create_folder(extra_raws_path)  # create delete folder
+    create_folder(extra_jpgs_path)  # create delete folder
 
     # Get all file names and convert into a list
     files = [f for f in os.listdir(path_base) if os.path.isfile(os.path.join(path_base, f))]
