@@ -23,6 +23,7 @@ def main():
     extra_raws_path = os.path.join(path_base, 'extra_raws')  # Set path for extra raw files
     extra_jpgs_path = os.path.join(path_base, 'extra_jpgs')  # Set path for extra jpg files
     create_delete_folder(extra_raws_path)  # create delete folder
+    create_delete_folder(extra_jpgs_path)  # create delete folder
     raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
 
     # Get all file names and convert into a list
@@ -35,14 +36,16 @@ def main():
 
     # Get all jpg files into a list
     jpgs = [jpg.upper() for jpg in files if jpg.endswith('.JPG')]
-    # print(raws)
-    # print(jpgs)
+
     for raw in raws:  # Loop through all raw filenames
         print(f'Checking {raw[0:-4]}')
         if raw[0:-4] not in [j[0:-4] for j in jpgs]:  # Check if each raw file can be matched with a JPG
-            print(f'{raw} is not found with a JPG. Moving it to \delete')
-            shutil.move(os.path.join(path_base, raw), extra_raws_path)  # Move the file to "delete" folder
-    # TODO: do the same for JPGS
+            print(f'{raw} is not found with a JPG. Moving it to {extra_raws_path}')
+            shutil.move(os.path.join(path_base, raw), extra_raws_path)  # Move the file to "extra_raws_path" folder
+    for jpg in jpgs:
+        if jpg[0:-4] not in [r[0:-4] for r in raws]:
+            print(f'{jpg} is not found with a JPG. Moving it to {extra_jpgs_path}')
+            shutil.move(os.path.join(path_base, jpg), extra_jpgs_path)  # Move the file to "extra_raws_path" folder
 
 
 if __name__ == '__main__':
