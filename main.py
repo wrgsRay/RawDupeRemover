@@ -3,12 +3,23 @@ Python 3.6+
 @Author: wrgsRay
 """
 import os
+import shutil
+
+
+def create_delete_folder(folder):
+    try:
+        os.makedirs(folder)
+        print(f'Folder "{folder}" is created')
+    except FileExistsError:
+        print(f'Folder "{folder}" is already present')
 
 
 def main():
     # TODO: Ask user for path
     path_base = '.\\test'  # Set Path
-    os.chdir(path_base)  # Change working folder to path
+    path_target = '.\\delete'  # Set target path
+    create_delete_folder(path_target)  # create delete folder
+    # os.chdir(path_base)  # Change working folder to path
     raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
 
     # Get all file names and convert into a list
@@ -24,8 +35,8 @@ def main():
     print(raws)
     for raw in raws:  # Loop through all raw filenames
         if raw[0:-4] not in jpgs:  # Check if each raw file can be matched with a JPG
-            print(f'{raw} is not found with a JPG. Moving it to .\delete')
-            # TODO: Move files
+            print(f'{raw} is not found with a JPG. Moving it to \delete')
+            shutil.move(os.path.join(path_base, raw), path_target)  # Move the file to "delete" folder
 
 
 if __name__ == '__main__':
