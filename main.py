@@ -20,9 +20,9 @@ def main():
     root = tk.Tk()
     root.withdraw()
     path_base = filedialog.askdirectory()  # Ask user for folder
-    path_target = os.path.join(path_base, 'delete')  # Set target path
-    create_delete_folder(path_target)  # create delete folder
-    # os.chdir(path_base)  # Change working folder to path
+    extra_raws_path = os.path.join(path_base, 'extra_raws')  # Set path for extra raw files
+    extra_jpgs_path = os.path.join(path_base, 'extra_jpgs')  # Set path for extra jpg files
+    create_delete_folder(extra_raws_path)  # create delete folder
     raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
 
     # Get all file names and convert into a list
@@ -33,13 +33,16 @@ def main():
     for extension in raw_formats:  # Loop through all supported extensions
         raws += ([raw.upper() for raw in files if raw.endswith(extension)])  # If supported raws and found, add to list
 
-    # Get all jpg files into a list without extension
-    jpgs = [jpg[0:-4].upper() for jpg in files if jpg.endswith('.JPG')]
-    print(raws)
+    # Get all jpg files into a list
+    jpgs = [jpg.upper() for jpg in files if jpg.endswith('.JPG')]
+    # print(raws)
+    # print(jpgs)
     for raw in raws:  # Loop through all raw filenames
-        if raw[0:-4] not in jpgs:  # Check if each raw file can be matched with a JPG
+        print(f'Checking {raw[0:-4]}')
+        if raw[0:-4] not in [j[0:-4] for j in jpgs]:  # Check if each raw file can be matched with a JPG
             print(f'{raw} is not found with a JPG. Moving it to \delete')
-            shutil.move(os.path.join(path_base, raw), path_target)  # Move the file to "delete" folder
+            shutil.move(os.path.join(path_base, raw), extra_raws_path)  # Move the file to "delete" folder
+    # TODO: do the same for JPGS
 
 
 if __name__ == '__main__':
