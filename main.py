@@ -5,7 +5,7 @@ Python 3.6
 import os
 
 # TODO: Ask user for path
-path_base = 'D:\\2018-11-13'
+path_base = '.\\test'
 
 
 def main():
