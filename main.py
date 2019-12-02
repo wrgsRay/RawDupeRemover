@@ -43,7 +43,7 @@ def main():
         raws += ([raw.upper() for raw in files if raw.endswith(extension)])  # If supported raws and found, add to list
 
     # Get all jpg files into a list
-    jpgs = [jpg.upper() for jpg in files if jpg.endswith('.JPG')]
+    jpgs = [jpg.upper() for jpg in files if jpg.endswith('.JPG') and not jpg.startswith('.')]
 
     for raw in raws:  # Loop through all raw filenames
         if raw[0:-4] not in [j[0:-4] for j in jpgs]:  # Check if each raw file can be matched with a JPG
