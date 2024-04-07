@@ -1,4 +1,4 @@
- Made this for my dear wife. We shoot a lot of photos. And we often have to look at our photos on our computer and delete the ones that are not good for anything.
+ Made this for my dear wife. We shoot a lot of photos, and we often have to look at our photos on our computer and delete the ones that are not good for anything.
  
  Here's the problem: when we shoot photos, we shoot JPG+RAW; when we look, we only look at JPGs. So after deleting a bunch of JPG files. We're still left with a bunch of useless RAW files in the same folder. We often have to sort by filename and look for RAW files without a pairing JPG file.
  
