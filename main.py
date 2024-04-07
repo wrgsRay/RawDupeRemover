@@ -8,7 +8,7 @@ import tkinter as tk
 import time
 from tkinter import filedialog
 
-raw_formats = ['.ARW', '.CR2']  # Include raw formats to scan
+raw_formats = ['.ARW', '.CR2', '.DNG']  # Include raw formats to scan
 
 
 def create_folder(folder):
