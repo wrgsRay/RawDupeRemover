@@ -40,7 +40,7 @@ def main():
     # Get all raw files into a list
     raws = list()  # create empty list
     for extension in raw_formats:  # Loop through all supported extensions
-        raws += ([raw.upper() for raw in files if raw.endswith(extension)])  # If supported raws and found, add to list
+        raws += ([raw.upper() for raw in files if raw.endswith(extension) and not raw.startswith('.')])  # If supported raws and found, add to list
 
     # Get all jpg files into a list
     jpgs = [jpg.upper() for jpg in files if jpg.endswith('.JPG') and not jpg.startswith('.')]
